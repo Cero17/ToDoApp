@@ -17,7 +17,6 @@ const ItemFormat = (props) => {
                 <View style={styles.deleteContainer}>
                
                     <Animated.View style={{ transform: [{ scale: trans }] }}>
-                        {/* <Text style={styles.deleteText}>Delete</Text> */}
                         <AntDesign
                             name='delete'
                             style={{ color: 'white', fontSize: 50 }} />
@@ -33,8 +32,14 @@ const ItemFormat = (props) => {
         <TouchableOpacity
             style={styles.itemList}
             >
-                <Text>{props.data.name}</Text>
-                <Text>{props.data.description}</Text>
+              <View style={{marginRight: 10, width: 200}}>
+                <Text style={{paddingVertical: 4, fontSize: 18, fontWeight: 'bold'}}>{props.data.name}</Text>
+                <Text style={{fontSize: 15}}>{props.data.description}</Text>  
+              </View>
+
+              <View style={styles.date}>
+                  <Text style={{fontSize: 18, color: 'white'}}>{props.data.date}</Text>    
+              </View>
         </TouchableOpacity>   
     </Swipeable>
   )
@@ -44,20 +49,31 @@ export default ItemFormat
 
 const styles = StyleSheet.create({
     itemList: {
-        marginVertical: 4,
-        paddingVertical: 10,
-        paddingHorizontal: 12,
+        marginVertical: 6,
+        paddingVertical: 15,
+        marginHorizontal: 3,
+        paddingLeft: 24,
         borderWidth: 1,
         borderRadius: 5,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        flexDirection: 'row'
     },
     deleteContainer: {
         flex: 1,
-        marginVertical: 4,
+        marginVertical: 6,
         backgroundColor: 'red',
         justifyContent: 'center',
         alignItems: 'center',
         width: 50,
-        borderRadius: 2
+        borderRadius: 5
     },
+    date: {
+        justifyContent: 'center',
+        backgroundColor: '#810CA8',
+        padding: 8,
+        borderWidth: 1,
+        borderRadius: 5,
+        width: 115
+
+    }
 })

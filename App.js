@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, StatusBar} from 'react-native';
 import HomeScreen from './components/HomeScreen';
 import InputItem from './components/InputItem';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,12 +8,21 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    <>
+      <StatusBar/>
+      <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home' screenOptions={{
+        headerStyle: { backgroundColor: "#3F0071" },
+        headerTintColor: "white",
+        headerTitleAlign: 'center',
+        headerTitleStyle: {fontSize: 25}
+      }}>
         <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='Item' component={InputItem}/>
+        <Stack.Screen name='Task' component={InputItem}/>
       </Stack.Navigator>
    </NavigationContainer>
+   
+    </>
   );
 }
 

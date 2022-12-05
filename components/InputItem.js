@@ -15,16 +15,11 @@ const InputItem = ({ navigation }) => {
 
     const [date, setDate] = useState(new Date())
 
-    const [text, setText] = useState("Choose a date")
+    const [textDate, setTextDate] = useState("Choose a date")
     
     const showDataPicker = () => setIsDataPickerVisible(true)
 
     const hideDataPicker = () => setIsDataPickerVisible(false)
-
-    // const handleConfirm = (date) => {
-    //     console.log("A date has been picked ", date)
-    //     setDate(date)
-    // }
 
     const dateHandler = (selectedDate) => {
         const currentDate = selectedDate || date;
@@ -37,7 +32,7 @@ const InputItem = ({ navigation }) => {
                            
                            
      
-        setText(formatedDate)
+        setTextDate(formatedDate)
 
         console.log(formatedDate)
     }
@@ -49,7 +44,7 @@ const InputItem = ({ navigation }) => {
         await addDoc(colRef, {
             name: taskName,
             description: taskDescription,
-            date: date,
+            date: textDate,
             createdAt: serverTimestamp()
         }).then(() => {
             console.log("Data Added succesfully")
@@ -93,7 +88,7 @@ const InputItem = ({ navigation }) => {
                         />
 
                   <View style={styles.dateContainer}>
-                      <Text style={styles.dateText}>{text}</Text>
+                      <Text style={styles.dateText}>{textDate}</Text>
                       <View style={{
                           flex: 1, height: 1,
                           backgroundColor: 'black',
@@ -117,7 +112,7 @@ const InputItem = ({ navigation }) => {
                     await AddTask()
                     navigation.navigate('Home')}}
               >
-                <Text style={{fontSize: 18}}>Create Task</Text>
+                <Text style={{fontSize: 18, fontWeight: '400'}}>Create Task</Text>
               </TouchableOpacity>
     </View>
    </ScrollView>
@@ -130,10 +125,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#810CA8'
+        backgroundColor: "#150050" //'#2D033B'  //'#810CA8'
     },
     inputContainer: {
-        marginLeft: 25,
+        marginLeft: 35,
         width: '100%',
         marginTop: 15,
         paddingVertical: 16
@@ -175,7 +170,6 @@ const styles = StyleSheet.create({
         
     },
     dateContainer: {
-      //  backgroundColor: 'pink',
         marginRight: 75,
         padding: 12
     }

@@ -23,7 +23,6 @@ const HomeScreen = ({ navigation }) => {
             snapshot.docs.forEach((doc) => {
                 taskData.push({...doc.data(), id: doc.id})
             })
-           // console.log(taskData)
             setTasks(taskData)
         })
     }
@@ -51,7 +50,7 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.upperText}>Tasks</Text>
               </View>
               <View style={{marginLeft: 190, marginTop: 10}}>
-                  <TouchableOpacity onPress={() => navigation.navigate('Item')}>
+                  <TouchableOpacity onPress={() => navigation.navigate('Task')}>
                   <AntDesign name='pluscircleo' style={{color: 'white', fontSize: 45}} />
                  </TouchableOpacity>
               </View>
@@ -76,11 +75,10 @@ export default HomeScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor : '#810CA8',
-        //alignItems: 'center'
+        backgroundColor : "#150050"  //"#2D033B"     //'#810CA8',
     },
     upperView: {
-        marginTop: 20,
+        marginTop: 15,
         width: '100%',
         padding: 16,
         flexDirection: 'row',
@@ -92,9 +90,7 @@ const styles = StyleSheet.create({
     },
     lowerView: {
         flex: 1,
-        marginTop: 15,
-        //backgroundColor: 'pink',
-       // marginHorizontal: 8
+        marginTop: 5
     },
 })
 
