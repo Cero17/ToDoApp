@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, Animated, Dimensions } from 'react-native'
 import { Swipeable } from 'react-native-gesture-handler'
 import AntDesign from 'react-native-vector-icons/AntDesign'
+import { useNavigation } from '@react-navigation/native';
 
 const Scren_width = Dimensions.get('window').width;
 
 const ItemFormat = (props) => {
+
+    const navigation = useNavigation();
 
     const renderLeftActions = (progress, dragX) => {
         const trans = dragX.interpolate({
@@ -30,7 +33,12 @@ const ItemFormat = (props) => {
   return (
     <Swipeable renderLeftActions={renderLeftActions}>
         <TouchableOpacity
-            style={styles.itemList}
+              style={styles.itemList}
+              onPress={() => navigation.navigate("Update", {
+                  name: props.data.name,
+                  description: props.data.description,
+                  itemId: props.data.id
+              })}
             >
               <View style={{marginRight: 10, width: 200}}>
                 <Text style={{paddingVertical: 4, fontSize: 18, fontWeight: 'bold'}}>{props.data.name}</Text>

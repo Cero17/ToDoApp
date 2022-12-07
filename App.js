@@ -3,6 +3,7 @@ import HomeScreen from './components/HomeScreen';
 import InputItem from './components/InputItem';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import EditItem from './components/EditItem';
 
 const Stack = createNativeStackNavigator()
 
@@ -18,7 +19,8 @@ export default function App() {
         headerTitleStyle: {fontSize: 25}
       }}>
         <Stack.Screen name='Home' component={HomeScreen} />
-        <Stack.Screen name='Task' component={InputItem}/>
+        <Stack.Screen name='Task' component={InputItem} />
+        <Stack.Screen name='Update' component={EditItem}/>  
       </Stack.Navigator>
    </NavigationContainer>
    
