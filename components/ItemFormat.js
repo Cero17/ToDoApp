@@ -3,12 +3,14 @@ import { Swipeable } from 'react-native-gesture-handler'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import { useNavigation } from '@react-navigation/native';
 
-const Scren_width = Dimensions.get('window').width;
+//using the react-native-gesture-handler to enable gesture on the screen
+//in this app we're using the swipeable function for deleting tasks
 
 const ItemFormat = (props) => {
 
     const navigation = useNavigation();
 
+    //this function defines the animation in the home screen
     const renderLeftActions = (progress, dragX) => {
         const trans = dragX.interpolate({
             inputRange: [0, 100],

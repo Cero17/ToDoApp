@@ -12,12 +12,14 @@ const HomeScreen = ({ navigation }) => {
 
     const [task, setTasks] = useState([])
 
+    //fetching data from firebase
     const fetchData = async () => {
         //querries
         const colRef = collection(db, 'tasks')
 
         const q = query(colRef, orderBy('createdAt', 'desc'))
 
+        //onSnapshot function is used for updating in realtime
         await onSnapshot(q, (snapshot) => {
             const taskData = []
             snapshot.docs.forEach((doc) => {
@@ -27,6 +29,7 @@ const HomeScreen = ({ navigation }) => {
         })
     }
 
+    //once the screen is loaded the fetchdata function is called 
     useEffect(() => {
         fetchData()
     }, [])
@@ -36,8 +39,8 @@ const HomeScreen = ({ navigation }) => {
         const docRef = doc(db, 'tasks', task.id)
         deleteDoc(docRef)
             .then(() => {
-                //shows an alert
-                alert('task deleted successfully')
+                //console log message
+                console.log('task deleted successfully')
             })
             .catch(error => alert(error.message))
     }

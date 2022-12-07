@@ -6,6 +6,8 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
+//using the real-time-modal-datetime-picker library selecting dates (calendar)
+
 const InputItem = ({ navigation }) => {
 
     const [taskName, setTaskName] = useState("");
@@ -30,8 +32,6 @@ const InputItem = ({ navigation }) => {
                         + (tempDate.getMonth() + 1) + '/'
                         + tempDate.getFullYear() 
                            
-                           
-     
         setTextDate(formatedDate)
 
         console.log(formatedDate)

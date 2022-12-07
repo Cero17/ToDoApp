@@ -14,6 +14,8 @@ const EditItem = ({ route }) => {
     const [newTaskName, setNewTaskName] = useState(name)
     const [newDescription, setNewDescription] = useState(description)
 
+
+    //updates existing tasks
     const updateTask = async() => {
         const docRef = doc(db, "tasks", itemId)
         await updateDoc(docRef, {
