@@ -78,7 +78,7 @@ export default HomeScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor : "#150050"  //"#2D033B"     //'#810CA8',
+        backgroundColor : "#150050" 
     },
     upperView: {
         marginTop: 15,
