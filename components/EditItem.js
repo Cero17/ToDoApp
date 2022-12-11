@@ -6,14 +6,17 @@ import { useState } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 const EditItem = ({ route }) => {
+
+    // this screen updates the existing tasks by updating 
+    // the task name and description
     
+    // the existing data is passed as params
     const { name, description, itemId } = route.params;
 
     const navigation = useNavigation();
 
-    const [newTaskName, setNewTaskName] = useState(name)
+    const [newTaskName, setNewTaskName] = useState(name) 
     const [newDescription, setNewDescription] = useState(description)
-
 
     //updates existing tasks
     const updateTask = async() => {

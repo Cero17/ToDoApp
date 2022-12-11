@@ -10,48 +10,58 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const InputItem = ({ navigation }) => {
 
-    const [taskName, setTaskName] = useState("");
+    const [taskName, setTaskName] = useState(""); //
+
     const [taskDescription, setTaskDescription] = useState("")
 
-    const [isDataPickerVisible, setIsDataPickerVisible] = useState(false)
+    const [isDataPickerVisible, setIsDataPickerVisible] = useState(false) // checks if the date picker is visible
 
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(new Date().toDateString()) 
 
-    const [textDate, setTextDate] = useState("Choose a date")
+    //const [textDate, setTextDate] = useState("Choose a date")
     
     const showDataPicker = () => setIsDataPickerVisible(true)
 
     const hideDataPicker = () => setIsDataPickerVisible(false)
 
-    const dateHandler = (selectedDate) => {
-        const currentDate = selectedDate || date;
-        setDate(currentDate)
 
-        let tempDate = new Date(currentDate);
-        let formatedDate = tempDate.getDate() + '/' 
-                        + (tempDate.getMonth() + 1) + '/'
-                        + tempDate.getFullYear() 
-                           
-        setTextDate(formatedDate)
+    const dateHandler = (selectedDate) => {
+        //sets the date chose by the user
+        const currentDate = selectedDate || date;
+
+        // returns a new format of the selected date
+        let formatedDate = new Date(currentDate).toDateString();
+                       
+       // setTextDate(formatedDate)
+        setDate(formatedDate)
 
         console.log(formatedDate)
     }
 
-
-
+    // Add new task to the database
     const AddTask = async() => {
         const colRef = await collection(db, 'tasks')
         await addDoc(colRef, {
             name: taskName,
             description: taskDescription,
-            date: textDate,
+            date: date,
             createdAt: serverTimestamp()
         }).then(() => {
             console.log("Data Added succesfully")
             setTaskDescription("")
             setTaskName("")
         }).catch(error => alert(error.message))
-}
+    }
+
+    // checks for possible exceptions before creating a new task
+    const AddTaskHandler = async() => {
+        if (!taskName && !taskDescription) { alert("Task name and description is required") }
+        else if (!taskName || !taskDescription) { alert("Task name or description is required") }
+        else {
+            await AddTask()
+            navigation.navigate("Home")
+        }
+    }
 
 
   return (
@@ -88,7 +98,7 @@ const InputItem = ({ navigation }) => {
                         />
 
                   <View style={styles.dateContainer}>
-                      <Text style={styles.dateText}>{textDate}</Text>
+                      <Text style={styles.dateText}>{date}</Text>
                       <View style={{
                           flex: 1, height: 1,
                           backgroundColor: 'black',
@@ -108,9 +118,7 @@ const InputItem = ({ navigation }) => {
 
           <TouchableOpacity
               style={styles.btn}
-                  onPress={async () => {
-                    await AddTask()
-                    navigation.navigate('Home')}}
+                  onPress={AddTaskHandler}
               >
                 <Text style={{fontSize: 18, fontWeight: '400'}}>Create Task</Text>
               </TouchableOpacity>
@@ -164,7 +172,7 @@ const styles = StyleSheet.create({
         marginRight: 50
     },
     dateText: {
-        fontSize: 24,
+        fontSize: 20,
         marginBottom: 2,
         color: 'white'
         

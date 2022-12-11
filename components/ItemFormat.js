@@ -48,7 +48,7 @@ const ItemFormat = (props) => {
               </View>
 
               <View style={styles.date}>
-                  <Text style={{fontSize: 18, color: 'white'}}>{props.data.date}</Text>    
+                  <Text style={{fontSize: 12, color: 'white'}}>{props.data.date}</Text>    
               </View>
         </TouchableOpacity>   
     </Swipeable>
