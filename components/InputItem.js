@@ -10,16 +10,14 @@ import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const InputItem = ({ navigation }) => {
 
-    const [taskName, setTaskName] = useState(""); //
+    const [taskName, setTaskName] = useState("");
 
     const [taskDescription, setTaskDescription] = useState("")
 
     const [isDataPickerVisible, setIsDataPickerVisible] = useState(false) // checks if the date picker is visible
 
     const [date, setDate] = useState(new Date().toDateString()) 
-
-    //const [textDate, setTextDate] = useState("Choose a date")
-    
+  
     const showDataPicker = () => setIsDataPickerVisible(true)
 
     const hideDataPicker = () => setIsDataPickerVisible(false)
@@ -133,7 +131,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: "#150050" //'#2D033B'  //'#810CA8'
+        backgroundColor: "#150050" 
     },
     inputContainer: {
         marginLeft: 35,

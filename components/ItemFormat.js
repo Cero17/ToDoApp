@@ -31,13 +31,13 @@ const ItemFormat = (props) => {
         )
     }
 
-
   return (
     <Swipeable renderLeftActions={renderLeftActions}>
         <TouchableOpacity
               style={styles.itemList}
               onPress={() => navigation.navigate("Update", {
-                  name: props.data.name,
+                  //the current data is passed to the EditItem screen
+                  name: props.data.name, 
                   description: props.data.description,
                   itemId: props.data.id
               })}
